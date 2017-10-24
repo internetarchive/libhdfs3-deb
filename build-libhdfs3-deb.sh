@@ -6,9 +6,9 @@ echo '640f505f06f87d75bebc629e4a677ebb185ea9a34eb6d7c199db0753ffc42f62  Minicond
 
 bash Miniconda3-4.3.27.1-Linux-x86_64.sh -b -p ./miniconda -u
 ./miniconda/bin/conda install -q -y -c conda-forge libhdfs3
-mkdir -p libhdfs3_1-1/usr/lib
-rsync -l ./miniconda/lib/libprotobuf.* ./libhdfs3_1-1/usr/lib
-rsync -l ./miniconda/lib/libhdfs* ./libhdfs3_1-1/usr/lib
+mkdir -p libhdfs3_1-1/usr/lib/x86_64-linux-gnu/
+rsync -l ./miniconda/lib/libprotobuf.* ./libhdfs3_1-1/usr/lib/x86_64-linux-gnu/
+rsync -l ./miniconda/lib/libhdfs* ./libhdfs3_1-1/usr/lib/x86_64-linux-gnu/
 
 # create metadata items for .deb package
 mkdir libhdfs3_1-1/DEBIAN
@@ -25,7 +25,7 @@ Description: Binary package for libhdfs3
 EOF
 
 dpkg-deb --build libhdfs3_1-1
-
+mv libhdfs3_1-1.deb /tmp
 cd /tmp
 rm -R $workdir
-
+echo "built deb file: /tmp/libhdfs3_1-1.deb"
