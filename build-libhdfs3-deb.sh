@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 workdir=$(mktemp -d)
 cd $workdir
 wget -q https://repo.continuum.io/miniconda/Miniconda3-4.3.27.1-Linux-x86_64.sh
